@@ -7,11 +7,23 @@ const aboutInput = document.querySelector('#about_input');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__about');
 
+let modal = 'closed';
+
 const toggleOpenPopup = () => {
-    popup.classList.toggle('popup_opened');
+    if (modal === 'closed') {
+        popup.classList.add('popup_opened');
+        popup.classList.remove('popup_closed');
+        modal = 'open';
+    } else {
+        popup.classList.add('popup_closed');
+        popup.classList.remove('popup_opened');
+        modal = 'closed';
+    }
     nameInput.value = profileName.textContent;
     aboutInput.value = profileInfo.textContent;
 }
+
+
 
 const handleAboutButtonClick = () => {
     toggleOpenPopup();
@@ -20,6 +32,8 @@ const handleAboutButtonClick = () => {
 const handleCloseButtonClick = () => {
     toggleOpenPopup();
 }
+
+
 
 const handleOverlyClick = (event) => {
     if (event.target === event.currentTarget) {
