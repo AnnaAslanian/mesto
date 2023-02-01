@@ -1,1 +1,96 @@
+<html lang="ru">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Русский туризм</title>
+    <link rel="stylesheet" type="text/css" href="./pages/index.css">
+</head>
+
+<body class="body">
+    <div class="root">
+        <header class="header">
+            <img class="header__logo" src="./images/Vector (1).png" alt="Логотип">
+        </header>
+
+        <div class="profile">
+
+            <div class="profile__avatar">
+                <img class="profile__logo" src="./images/image.jpg" alt="Аватар">
+            </div>
+            <div class="profile__edit">
+                <div class="profile__info">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button" type="button">
+                        <img class="profile__edit-logo" src="./images/Vector (3).png" alt="Ручка">
+                    </button>
+                </div>
+                <p class="profile__about">Исследователь океана</p>
+            </div>
+            <button class="profile__add-button" type="button">
+                <img class="profile__add-logo" src="./images/Vector (2).png" alt="Плюс">
+            </button>
+        </div>
+        <div class="elements">
+            <div class="element__group">
+                <img class="element__mask" src="./images/k8-YXdA3bVwjaY-unsplash.jpg" alt="Санкт-Петербург">
+                <div class="element">
+                    <h2 class="element__name">Санкт-Петербург</h2>
+                    <div class="element__logo"></div>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__mask" src="./images/Karelia.jpg" alt="Карелия">
+                <div class="element">
+                    <h2 class="element__name">Карелия</h2>
+                    <div class="element__logo"></div>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__mask" src="./images/Michurinskoe.jpg" alt="Мичуринск">
+                <div class="element">
+                    <h2 class="element__name">Мичуринск</h2>
+                    <div class="element__logo"></div>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__mask" src="./images/Novosibirsk.jpg" alt="Новосибирск">
+                <div class="element">
+                    <h2 class="element__name">Новосибирск</h2>
+                    <div class="element__logo"></div>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__mask" src="./images/Vladimir.jpg" alt="Владимир">
+                <div class="element">
+                    <h2 class="element__name">Владимир</h2>
+                    <div class="element__logo"></div>
+                </div>
+            </div>
+            <div class="element__group">
+                <img class="element__mask" src="./images/Moskva.jpg" alt="Москва">
+                <div class="element">
+                    <h2 class="element__name">Москва</h2>
+                    <div class="element__logo"></div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p class="footer__copyright">© 2023. Асланян Анна</p>
+        </footer>
+    </div>
+    <section class="popup">
+        <form class="popup__container">
+            <button class="popup__close" type="button"></button>
+            <h2 class="popup__header">Редактировать профиль</h2>
+            <input type="text" id="name_input" placeholder="Жак-Ив Кусто" class="popup__name">
+            <div class="popup__line"></div>
+            <input type="text" id="about_input" placeholder="Исследователь океана" class="popup__name">
+            <div class="popup__line"></div>
+            <button class="popup__submit-button" type="submit">Сохранить</button>
+        </form>
+    </section>
+    <script src="./scripts/index.js"></script>
+</body>
+
+</html>

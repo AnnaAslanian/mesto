@@ -1,0 +1,8 @@
+.profile__add-logo {
+    max-width: 22px;
+    height: 22px;
+ }
+
+ .profile__add-logo:hover {
+    opacity: 0.6;
+ }
