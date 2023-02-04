@@ -9,23 +9,24 @@
 <body class="body">
     <div class="root">
         <header class="header">
-            <img class="header__logo" src="./images/Vector-mesto.png" alt="Логотип">
+            <img class="header__logo" src="./images/Vector.svg" alt="Логотип">
         </header>
+        <div class="main">
         <div class="profile">
             <div class="profile__avatar">
-                <img class="profile__logo" src="./images/image.jpg" alt="Аватар">
+                <img class="profile__logo" src="./images/image.svg" alt="Аватар">
             </div>
             <div class="profile__edit">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button class="profile__edit-button" type="button">
-                        <img class="profile__edit-logo" src="./images/Vector-pen.png" alt="Ручка">
+                        <img class="profile__edit-logo" src="./images/Vector-pen.svg" alt="Ручка">
                     </button>
                 </div>
                 <p class="profile__about">Исследователь океана</p>
             </div>
             <button class="profile__add-button" type="button">
-                <img class="profile__add-logo" src="./images/Vector-plyus.png" alt="Плюс">
+                <img class="profile__add-logo" src="./images/Vector-plyus.svg" alt="Плюс">
             </button>
         </div>
         <div class="elements">
@@ -33,59 +34,60 @@
                 <img class="element__img" src="./images/sankt-piterburg.jpg" alt="Санкт-Петербург">
                 <div class="element__group">
                     <h2 class="element__name">Санкт-Петербург</h2>
-                    <div class="element__logo"></div>
+                    <button class="element__logo"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__img" src="./images/Karelia.jpg" alt="Карелия">
                 <div class="element__group">
                     <h2 class="element__name">Карелия</h2>
-                    <div class="element__logo"></div>
+                    <button class="element__logo"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__img" src="./images/Michurinskoe.jpg" alt="Мичуринск">
                 <div class="element__group">
                     <h2 class="element__name">Мичуринск</h2>
-                    <div class="element__logo"></div>
+                    <button class="element__logo"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__img" src="./images/Novosibirsk.jpg" alt="Новосибирск">
                 <div class="element__group">
                     <h2 class="element__name">Новосибирск</h2>
-                    <div class="element__logo"></div>
+                    <button class="element__logo"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__img" src="./images/Vladimir.jpg" alt="Владимир">
                 <div class="element__group">
                     <h2 class="element__name">Владимир</h2>
-                    <div class="element__logo"></div>
+                    <button class="element__logo"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__img" src="./images/Moskva.jpg" alt="Москва">
                 <div class="element__group">
                     <h2 class="element__name">Москва</h2>
-                    <div class="element__logo"></div>
+                    <button class="element__logo"></button>
                 </div>
             </div>
         </div>
+    </div>
         <footer class="footer">
             <p class="footer__copyright">© 2023. Асланян Анна</p>
         </footer>
     </div>
-    <section class="popup popup_closed">
-        <form class="popup__container">
+    <section class="popup">
+        <div class="popup__container">
             <button class="popup__close" type="button"></button>
             <h2 class="popup__header">Редактировать профиль</h2>
-            <input type="text" id="name_input" placeholder="Жак-Ив Кусто" class="popup__name">
-            <div class="popup__line"></div>
-            <input type="text" id="about_input" placeholder="Исследователь океана" class="popup__name">
-            <div class="popup__line"></div>
+           <form class="popup__form" name="popup__section"> 
+            <input type="text" name="popup_input" id="name_input" placeholder="Жак-Ив Кусто" class="popup__name popup__name_input_value">
+            <input type="text" name="popup_input" id="about_input" placeholder="Исследователь океана" class="popup__name popup__name_input_value">
             <button class="popup__submit-button" type="submit">Сохранить</button>
-        </form>
+          </form>
+        </div>
     </section>
     <script src="./scripts/index.js"></script>
 </body>

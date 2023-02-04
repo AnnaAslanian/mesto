@@ -11,54 +11,33 @@ let modal = 'closed';
 
 const toggleOpenPopup = () => {
     if (modal === 'closed') {
-        popup.classList.add('popup_opened');
-        popup.classList.remove('popup_closed');
-        modal = 'open';
+        openPopup();
     } else {
-        popup.classList.add('popup_closed');
-        popup.classList.remove('popup_opened');
-        modal = 'closed';
+        closePopup();
     }
     nameInput.value = profileName.textContent;
     aboutInput.value = profileInfo.textContent;
 }
 
-
-
-const handleAboutButtonClick = () => {
-    toggleOpenPopup();
+const openPopup = () => {
+    popup.style.display = 'flex';
+    modal = 'open';
 }
 
-const handleCloseButtonClick = () => {
-    toggleOpenPopup();
+const closePopup = () => {
+    popup.style.display = 'none';
+        modal = 'closed';
 }
 
-
-
-const handleOverlyClick = (event) => {
-    if (event.target === event.currentTarget) {
-        toggleOpenPopup();
-    }
-}
-
-aboutButton.addEventListener("click", handleAboutButtonClick);
-closeButton.addEventListener("click", handleCloseButtonClick);
-popup.addEventListener('click', handleOverlyClick);
-
-function handleFormSubmit (evt) {
+const handleFormSubmit = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = aboutInput.value;
     toggleOpenPopup();
 }
 
+aboutButton.addEventListener("click", toggleOpenPopup);
+closeButton.addEventListener("click", toggleOpenPopup);
 formElement.addEventListener('submit', handleFormSubmit);
 
-const items = document.querySelectorAll('.element__logo');
 
-items.forEach(item => {
-  item.addEventListener('click', function() {
-    items.forEach(elem => elem.classList.remove('active'));
-    this.classList.add('active');
-  });
-});

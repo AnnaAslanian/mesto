@@ -1,6 +1,8 @@
 .root {
     width: 100%;
     max-width: 1280px;
+    height: 100%;
+    position: fixed;
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0;

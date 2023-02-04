@@ -1,17 +1,19 @@
 .element__logo {
     max-width: 22px;
     height: 19px;
-    padding-right: 24px;
-    background-image: url(../../../images/Stroke.png);
+    padding: 0 24px 0 0;
+    background-image: url(../../../images/Stroke.svg);
     background-repeat: no-repeat;
     object-fit: cover;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 .element__logo:hover {
-    background-image: url(../../../images/hover.png);
+    background-image: url(../../../images/hover.svg);
 }
 
-.active {
-    background-image: url(../../../images/active.png);
+.element__logo:active {
+    background-image: url(../../../images/activ.svg);
 }
