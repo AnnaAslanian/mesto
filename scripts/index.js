@@ -2,42 +2,30 @@ const aboutButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const closeButton = popup.querySelector('.popup__close');
 const formElement = document.querySelector('.popup__container');
-const nameInput = document.querySelector('#name_input');
-const aboutInput = document.querySelector('#about_input');
+const nameInput = document.querySelector('.popup__name_input_value');
+const aboutInput = document.querySelector('.popup__name_input_about');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__about');
 
-let modal = 'closed';
-
-const toggleOpenPopup = () => {
-    if (modal === 'closed') {
-        openPopup();
-    } else {
-        closePopup();
-    }
-    nameInput.value = profileName.textContent;
-    aboutInput.value = profileInfo.textContent;
+const handleEditButtonClick = () => {
+    popup.classList.add('popup_opened');
+    let name =  profileName.textContent;
+    let about = profileInfo.textContent;
+    nameInput.value = name;
+    aboutInput.value = about;
 }
 
-const openPopup = () => {
-    popup.style.display = 'flex';
-    modal = 'open';
+const handleCloseButtonClick = ()  => {
+    popup.classList.remove('popup_opened');
 }
 
-const closePopup = () => {
-    popup.style.display = 'none';
-        modal = 'closed';
-}
-
-const handleFormSubmit = (evt) => {
+function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = aboutInput.value;
-    toggleOpenPopup();
+    handleCloseButtonClick();
 }
 
-aboutButton.addEventListener("click", toggleOpenPopup);
-closeButton.addEventListener("click", toggleOpenPopup);
-formElement.addEventListener('submit', handleFormSubmit);
-
-
+aboutButton.addEventListener('click', handleEditButtonClick);
+closeButton.addEventListener('click', handleCloseButtonClick);
+formElement.addEventListener('submit', formSubmitHandler);

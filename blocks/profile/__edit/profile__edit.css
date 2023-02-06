@@ -1,7 +1,7 @@
 .profile__edit {
     display: flex;
     flex-direction: column;
-    margin-left: 3.75px;
+    margin-left: 26.25px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 380px) {
