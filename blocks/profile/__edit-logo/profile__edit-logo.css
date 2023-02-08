@@ -3,3 +3,11 @@
     height: 10px;
     color: rgba(255, 255, 255, 1);
 }
+
+
+@media screen and (max-width: 320px) {
+    .profile__edit-logo {
+        max-width: 7.5px;
+        height: 7.5px;
+    }
+}
