@@ -9,6 +9,8 @@ const profileInfo = document.querySelector('.profile__about');
 
 const handleEditButtonClick = () => {
     popup.classList.add('popup_opened');
+    nameInput.value = profileName.textContent;
+    aboutInput.value = profileInfo.textContent;
 }
 
 const handleCloseButtonClick = ()  => {
