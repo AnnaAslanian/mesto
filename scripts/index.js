@@ -21,7 +21,7 @@ const title = document.querySelector('.popup__name_input_title');
 const link = document.querySelector('.popup__name_input_link');
 const containerAdd = document.querySelector('.popup__container_add');
 // popupZoom
-const popupZoomImage = document.querySelector('.popup__window');
+const popupZoomImage = document.querySelector('.popup-window');
 const windowImage = document.querySelector('.popup__window-image');
 const popupZoomTitle = document.querySelector('.popup__zoom-title');
 const closeButtonWindow = document.querySelector('.popup__window-close')
