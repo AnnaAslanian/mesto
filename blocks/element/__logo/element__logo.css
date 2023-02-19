@@ -14,6 +14,6 @@
     background-image: url(../../../images/hover.svg);
 }
 
-.element__logo:active {
+.element__logo_active {
     background-image: url(../../../images/activ.svg);
 }

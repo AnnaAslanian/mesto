@@ -1,6 +1,13 @@
 .element__img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 282px;
     height: 282px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
+}
+
+.element__img_active {
+    max-width: 100%;
+    min-width: 816px;
+    height: 540px;
 }

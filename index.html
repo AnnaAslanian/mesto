@@ -28,55 +28,15 @@
             </button>
         </div>
         <div class="elements">
-            <div class="element">
-                <img class="element__img" src="./images/sankt-piterburg.jpg" alt="Санкт-Петербург">
-                <div class="element__group">
-                    <h2 class="element__name">Санкт-Петербург</h2>
-                    <button class="element__logo" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__img" src="./images/Karelia.jpg" alt="Карелия">
-                <div class="element__group">
-                    <h2 class="element__name">Карелия</h2>
-                    <button class="element__logo" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__img" src="./images/Michurinskoe.jpg" alt="Мичуринск">
-                <div class="element__group">
-                    <h2 class="element__name">Мичуринск</h2>
-                    <button class="element__logo" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__img" src="./images/Novosibirsk.jpg" alt="Новосибирск">
-                <div class="element__group">
-                    <h2 class="element__name">Новосибирск</h2>
-                    <button class="element__logo" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__img" src="./images/Vladimir.jpg" alt="Владимир">
-                <div class="element__group">
-                    <h2 class="element__name">Владимир</h2>
-                    <button class="element__logo" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__img" src="./images/Moskva.jpg" alt="Москва">
-                <div class="element__group">
-                    <h2 class="element__name">Москва</h2>
-                    <button class="element__logo" type="button"></button>
-                </div>
-            </div>
+            <ul class="elements__list">  
+            </ul>
         </div>
     </main>
         <footer class="footer">
             <p class="footer__copyright">© 2023. Асланян Анна</p>
         </footer>
     </div>
-    <section class="popup">
+    <section class="popup popup-edit">
         <div class="popup__container">
             <button class="popup__close" type="button"></button>
             <h2 class="popup__header">Редактировать профиль</h2>
@@ -87,6 +47,35 @@
           </form>
         </div>
     </section>
+    <section class="popup popup_add">
+        <div class="popup__container popup__container_add">
+            <button class="popup__close popup__add-close" type="button"></button>
+            <h2 class="popup__header">Новое место</h2>
+           <form class="popup__form" id="form" name="popup__section"> 
+            <input type="text" name="popup_input" id="name_input" placeholder="Название" class="popup__name popup__name_input_title">
+            <input type="url" name="popup_input" id="about_input" placeholder="Ссылка на картинку" class="popup__name popup__name_input_link">
+            <button class="popup__submit-button popup__add_submit-button" type="submit">Создать</button>
+          </form>
+        </div>
+    </section>
+    <section class="popup popup__window">
+        <div class="popup__window_container">
+            <button class="popup__close popup__window_close" type="button"></button>
+            <img class="popup__window_image" src="" alt="Место">
+            <h2 class="popup__zoom-title"></h2>
+        </div>
+    </section>
+    <template class="template">
+        <li class="element">
+            <img src="./images/delete.svg" class="element__delete"></img>
+            <img class="element__img" src="" alt="Место">
+            <div class="element__group">
+                <h2 class="element__name"></h2>
+                <button class="element__logo" type="button"></button>
+            </div>
+        </li>
+    </template>
+    <script src="./scripts/constants.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
