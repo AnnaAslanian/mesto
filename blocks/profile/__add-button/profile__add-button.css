@@ -14,6 +14,7 @@
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
+    transition: 3s linear;
 }
 
 .profile__add-button:hover {

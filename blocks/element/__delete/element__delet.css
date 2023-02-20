@@ -9,7 +9,6 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    transition: opacity .3s leaner;
 }
 .element__delete:hover{
     opacity: .5;
