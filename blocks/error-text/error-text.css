@@ -1,4 +1,4 @@
-.error__text{
+.error-text{
     display: flex;
     color: red;
     font-weight: 400;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 320px) {
-    .error__text {
+    .error-text {
         margin: 5px 22px 0 22px;
     }
 }
