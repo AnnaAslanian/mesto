@@ -15,9 +15,21 @@
     border: 0;
     transition: .3s leaner;
 }
+.popup__no-submit{
+    border: 1px solid #000000;
+    border-radius: 2px;
+    background-color: white;
+    opacity: .2;
+    color: black;
+    pointer-events: none;
+}
 
 .popup__submit-button:hover {
     opacity: 0.8;
+}
+.popup__submit-button_disabled {
+    background: white;
+    color: rgba(0, 0, 0, 1);
 }
 
 @media screen and (min-width: 320px) and (max-width: 650px) {
