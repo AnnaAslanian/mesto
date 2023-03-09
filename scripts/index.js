@@ -1,6 +1,6 @@
 //открытие/закрытие формы для редактирования профиля
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const popupEditProfile = document.querySelector('.popup');
+const popupEditProfile = document.querySelector('.popup-edit');
 const buttonEditClose = document.querySelector('.popup__close');
 // редактирование профиля
 const popupFormEditProfile = document.querySelector('.popup__form-edit');
@@ -81,12 +81,12 @@ function createCard(nameValue, linkValue) {
         openPopup(popupZoomImage);
     });
     return elementsItem;
-};
+}
 
 initialCards.forEach((card) => {
     const addCardNew = createCard(card.name, card.link);
     elementsList.append(addCardNew);
-});
+})
 
 function submiteCreateForm(evt) {
     evt.preventDefault();
@@ -94,34 +94,33 @@ function submiteCreateForm(evt) {
     elementsList.prepend(addCardNew);
     closePopup(popupAdd);
     evt.target.reset();
-};
+}
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 popupList.forEach((elem) => {
     elem.addEventListener("click", (evt) => {
         closePopup(evt.target)
     });
-});
+})
 
 buttonWindowClose.addEventListener('click', () => {
     closePopup(popupZoomImage)
-});
+})
 
 containerAdd.addEventListener('submit', submiteCreateForm);
 popupFormEditProfile.addEventListener('submit', submiteEditForm);
 buttonOpenPopupProfile.addEventListener('click', openPopupEdit);
 buttonEditClose.addEventListener('click', () => {
     closePopup(popupEditProfile)
-});
+})
 
 openButtonAdd.addEventListener('click', () => {
     openPopup(popupAdd);
-});
+})
 
 buttonAddClose.addEventListener('click', () => {
     closePopup(popupAdd)
-});
-
+})
 
  
   
