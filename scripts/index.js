@@ -32,9 +32,6 @@ const buttonWindowClose = document.querySelector('.popup__window-close');
 function closePopup(element) {
     element.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
-    document.removeEventListener("click", (evt) => {
-      closePopup(evt.target)
-  });
 }
 
 function closePopupEsc(evt) {
@@ -47,9 +44,6 @@ function closePopupEsc(evt) {
 function openPopup(element) {
     element.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEsc);
-    document.addEventListener("click", (evt) => {
-      closePopup(evt.target)
-  });
 }
 
 const openPopupEdit = () => {
@@ -101,6 +95,13 @@ function submiteCreateForm(evt) {
     closePopup(popupAdd);
     evt.target.reset();
 }
+
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach((elem) => {
+    elem.addEventListener("click", (evt) => {
+        closePopup(evt.target)
+    });
+})
 
 buttonWindowClose.addEventListener('click', () => {
     closePopup(popupZoomImage)
