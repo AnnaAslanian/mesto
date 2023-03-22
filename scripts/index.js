@@ -1,3 +1,7 @@
+import { formValidator, defaultState } from './validate.js';
+
+import { Card, initialCards } from './constants.js';
+
 //открытие/закрытие формы для редактирования профиля
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup-edit');
@@ -8,7 +12,6 @@ const popupName = document.querySelector('.popup__name_input_value');
 const popupJob = document.querySelector('.popup__name_input_about');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
-const popupEditSubmit = document.querySelector('.popup__edit-save');
 // открытие/закрытие формы для добавления карточек 
 const popupAdd = document.querySelector('.popup_add');
 const openButtonAdd = document.querySelector('.profile__add-button');
@@ -22,12 +25,13 @@ const title = document.querySelector('.popup__name_input_title');
 const popupFormAddProfile = document.querySelector('.popup__form-add');
 const link = document.querySelector('.popup__name_input_link');
 const containerAdd = document.querySelector('.popup__container_add');
-const popupAddSubmit = document.querySelector('.popup__add-save');
 // popupZoom
 const popupZoomImage = document.querySelector('.popup-window');
 const windowImage = document.querySelector('.popup__window-image');
 const popupZoomTitle = document.querySelector('.popup__zoom-title');
 const buttonWindowClose = document.querySelector('.popup__window-close');
+const validateEdit = new formValidator(defaultState, popupFormEditProfile);
+const validateAdd = new formValidator(defaultState, popupFormAddProfile);
 
 function closePopup(element) {
     element.classList.remove('popup_opened');
@@ -42,14 +46,15 @@ function closePopupEsc(evt) {
 }
 
 function openPopup(element) {
+    validateAdd.enableValidation();
+    validateEdit.enableValidation();
     element.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEsc);
 }
 
-const openPopupEdit = () => {
+function openPopupEdit() {
     popupName.value = profileName.textContent;
     popupJob.value = profileJob.textContent;
-    resetValidation(popupFormEditProfile, defaultState);
     openPopup(popupEditProfile);
 }
 
@@ -60,37 +65,17 @@ function submiteEditForm(evt) {
     closePopup(popupEditProfile);
 }
 
-function createCard(nameValue, linkValue) {
-    const elementsItem = tempalate.querySelector('.element').cloneNode(true);
-    elementsItem.querySelector('.element__name').textContent = nameValue;
-    elementsItem.querySelector('.element__delete').addEventListener('click', function () {
-        elementsItem.remove();
-    });
-    elementsItem.querySelector('.element__logo').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__logo_active');
-    });
-
-    const elementsImage = elementsItem.querySelector('.element__img');
-    elementsImage.src = linkValue;
-    elementsImage.alt = nameValue;
-    elementsImage.addEventListener('click', (evt) => {
-        const windowCard = evt.target;
-        windowImage.src = windowCard.src;
-        windowImage.alt = nameValue;
-        popupZoomTitle.textContent = nameValue;
-        openPopup(popupZoomImage);
-    });
-    return elementsItem;
+function openZoomImage() {
+    openPopup(popupZoomImage);
+    windowImage.src = this.link;
+    windowImage.alt = this.name;
+    popupZoomTitle.textContent = this.name;
 }
-
-initialCards.forEach((card) => {
-    const addCardNew = createCard(card.name, card.link);
-    elementsList.append(addCardNew);
-})
 
 function submiteCreateForm(evt) {
     evt.preventDefault();
-    const addCardNew = createCard(title.value, link.value);
+    const elementImage = new Card(link.value, title.value, tempalate, popupZoomImage);
+    const addCardNew = elementImage.generateCard();
     elementsList.prepend(addCardNew);
     closePopup(popupAdd);
     evt.target.reset();
@@ -98,7 +83,7 @@ function submiteCreateForm(evt) {
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 popupList.forEach((elem) => {
-    elem.addEventListener("click", (evt) => {
+    elem.addEventListener('click', (evt) => {
         closePopup(evt.target)
     });
 })
@@ -114,8 +99,13 @@ buttonEditClose.addEventListener('click', () => {
     closePopup(popupEditProfile)
 })
 
+initialCards.forEach((item) => {
+    const card = new Card(item.link, item.name, tempalate, openZoomImage);
+    const createCard = card.generateCard();
+    elementsList.append(createCard);
+}) 
+
 openButtonAdd.addEventListener('click', () => {
-    resetValidation(popupFormAddProfile, defaultState);
     openPopup(popupAdd);
 })
 
@@ -123,5 +113,10 @@ buttonAddClose.addEventListener('click', () => {
     closePopup(popupAdd)
 })
 
- 
-  
+
+
+
+
+
+
+
