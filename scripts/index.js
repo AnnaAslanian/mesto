@@ -1,6 +1,8 @@
-import { formValidator, defaultState } from './validate.js';
+import {formValidator, defaultState} from './FormValidate.js'
 
-import { Card, initialCards } from './constants.js';
+import {initialCards} from './constants.js';
+
+import {Card} from './Card.js';
 
 //открытие/закрытие формы для редактирования профиля
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
@@ -14,7 +16,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 // открытие/закрытие формы для добавления карточек 
 const popupAdd = document.querySelector('.popup_add');
-const openButtonAdd = document.querySelector('.profile__add-button');
+const buttonAddCard = document.querySelector('.profile__add-button');
 const buttonAddClose = document.querySelector('.popup__add-close');
 // инициализация карточек
 const tempalate = document.querySelector('.template').content;
@@ -26,7 +28,7 @@ const popupFormAddProfile = document.querySelector('.popup__form-add');
 const link = document.querySelector('.popup__name_input_link');
 const containerAdd = document.querySelector('.popup__container_add');
 // popupZoom
-const popupZoomImage = document.querySelector('.popup-window');
+const zoomPopupImage = document.querySelector('.popup-window');
 const windowImage = document.querySelector('.popup__window-image');
 const popupZoomTitle = document.querySelector('.popup__zoom-title');
 const buttonWindowClose = document.querySelector('.popup__window-close');
@@ -46,8 +48,6 @@ function closePopupEsc(evt) {
 }
 
 function openPopup(element) {
-    validateAdd.enableValidation();
-    validateEdit.enableValidation();
     element.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEsc);
 }
@@ -55,6 +55,7 @@ function openPopup(element) {
 function openPopupEdit() {
     popupName.value = profileName.textContent;
     popupJob.value = profileJob.textContent;
+    validateEdit.enableValidation();
     openPopup(popupEditProfile);
 }
 
@@ -65,17 +66,21 @@ function submiteEditForm(evt) {
     closePopup(popupEditProfile);
 }
 
-function openZoomImage() {
-    openPopup(popupZoomImage);
-    windowImage.src = this.link;
-    windowImage.alt = this.name;
-    popupZoomTitle.textContent = this.name;
+function openZoomImage(name, link) {
+    openPopup(zoomPopupImage);
+    windowImage.src = link;
+    windowImage.alt = name;
+    popupZoomTitle.textContent = name;
 }
 
-function submiteCreateForm(evt) {
+function generateCard(cardLink, cardTitle, cardTemplate) {
+    const elementImage = new Card(cardLink, cardTitle, cardTemplate, openZoomImage);
+    return elementImage.generateCard();
+}
+
+function submitCreateForm(evt) {
     evt.preventDefault();
-    const elementImage = new Card(link.value, title.value, tempalate, popupZoomImage);
-    const addCardNew = elementImage.generateCard();
+    const addCardNew = generateCard(link.value, title.value, tempalate, zoomPopupImage);
     elementsList.prepend(addCardNew);
     closePopup(popupAdd);
     evt.target.reset();
@@ -89,10 +94,10 @@ popupList.forEach((elem) => {
 })
 
 buttonWindowClose.addEventListener('click', () => {
-    closePopup(popupZoomImage)
+    closePopup(zoomPopupImage)
 })
 
-containerAdd.addEventListener('submit', submiteCreateForm);
+containerAdd.addEventListener('submit', submitCreateForm);
 popupFormEditProfile.addEventListener('submit', submiteEditForm);
 buttonOpenPopupProfile.addEventListener('click', openPopupEdit);
 buttonEditClose.addEventListener('click', () => {
@@ -100,12 +105,12 @@ buttonEditClose.addEventListener('click', () => {
 })
 
 initialCards.forEach((item) => {
-    const card = new Card(item.link, item.name, tempalate, openZoomImage);
-    const createCard = card.generateCard();
+    const createCard = generateCard(item.link, item.name, tempalate, openZoomImage);
     elementsList.append(createCard);
-}) 
+})
 
-openButtonAdd.addEventListener('click', () => {
+buttonAddCard.addEventListener('click', () => {
+    validateAdd.enableValidation();
     openPopup(popupAdd);
 })
 

@@ -1,7 +1,4 @@
-export { formValidator, defaultState };
-
 const defaultState = {
-    // formSelector: '.popup__form',
     inputSelector: '.popup__name',
     submitButtonSelector: '.popup__submit-button',
     inactiveButtonClass: 'popup__no-submit',
@@ -11,7 +8,6 @@ const defaultState = {
 
 class formValidator {
     constructor(defaultState, form) {
-        // this._formSelector = defaultState.formSelector;
         this._inputSelector = defaultState.inputSelector;
         this._submitButtonSelector = defaultState.submitButtonSelector;
         this._inactiveButtonClass = defaultState.inactiveButtonClass;
@@ -61,7 +57,7 @@ _toggleButtonState = () => {
 
 _setEventListeners = () => {
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._form.querySelector(defaultState.submitButtonSelector);
+    this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._toggleButtonState();
 
     this._inputList.forEach((inputElement) => {
@@ -79,3 +75,5 @@ enableValidation = () => {
         this._setEventListeners();
     };
 }
+
+export { formValidator, defaultState };
