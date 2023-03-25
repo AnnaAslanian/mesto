@@ -1,8 +1,8 @@
-import {formValidator, defaultState} from './FormValidate.js'
+import { FormValidator } from './FormValidator.js'
 
-import {initialCards} from './constants.js';
+import { initialCards } from './constants.js';
 
-import {Card} from './Card.js';
+import { Card } from './Card.js';
 
 //открытие/закрытие формы для редактирования профиля
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
@@ -32,8 +32,17 @@ const zoomPopupImage = document.querySelector('.popup-window');
 const windowImage = document.querySelector('.popup__window-image');
 const popupZoomTitle = document.querySelector('.popup__zoom-title');
 const buttonWindowClose = document.querySelector('.popup__window-close');
-const validateEdit = new formValidator(defaultState, popupFormEditProfile);
-const validateAdd = new formValidator(defaultState, popupFormAddProfile);
+
+const defaultState = {
+    inputSelector: '.popup__name',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__no-submit',
+    inputErrorClass: 'popup__name_type_error',
+    errorClass: 'error-text_active'
+}
+
+const validateEdit = new FormValidator(defaultState, popupFormEditProfile);
+const validateAdd = new FormValidator(defaultState, popupFormAddProfile);
 
 function closePopup(element) {
     element.classList.remove('popup_opened');
@@ -105,8 +114,8 @@ buttonEditClose.addEventListener('click', () => {
 })
 
 initialCards.forEach((item) => {
-    const createCard = generateCard(item.link, item.name, tempalate, openZoomImage);
-    elementsList.append(createCard);
+    const card = generateCard(item.link, item.name, tempalate, openZoomImage);
+    elementsList.append(card);
 })
 
 buttonAddCard.addEventListener('click', () => {
@@ -117,11 +126,3 @@ buttonAddCard.addEventListener('click', () => {
 buttonAddClose.addEventListener('click', () => {
     closePopup(popupAdd)
 })
-
-
-
-
-
-
-
-

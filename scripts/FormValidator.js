@@ -1,12 +1,4 @@
-const defaultState = {
-    inputSelector: '.popup__name',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__no-submit',
-    inputErrorClass: 'popup__name_type_error',
-    errorClass: 'error-text_active'
-}
-
-class formValidator {
+class FormValidator {
     constructor(defaultState, form) {
         this._inputSelector = defaultState.inputSelector;
         this._submitButtonSelector = defaultState.submitButtonSelector;
@@ -76,4 +68,4 @@ enableValidation = () => {
     };
 }
 
-export { formValidator, defaultState };
+export { FormValidator };
