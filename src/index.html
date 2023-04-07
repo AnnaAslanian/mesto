@@ -4,27 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Русский туризм</title>
-    <link rel="stylesheet" type="text/css" href="./pages/index.css">
 </head>
 <body class="body">
     <div class="root">
         <header class="header">
-            <img class="header__logo" src="./images/Vector.svg" alt="Логотип">
+            <img src="<%=require('./images/Vector.svg')%>" alt="Логотип" class="header__logo">
         </header>
         <main class="main">
         <div class="profile">
-                <img class="profile__logo" src="./images/image.svg" alt="Аватар">
+                <img src="<%=require('./images/image.svg')%>" alt="Аватар" class="profile__logo">
             <div class="profile__edit">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button class="profile__edit-button" type="button">
-                        <img class="profile__edit-logo" src="./images/Vector-pen.svg" alt="Ручка">
+                        <img src="<%=require('./images/Vector-pen.svg')%>" alt="Ручка" class="profile__edit-logo">
                     </button>
                 </div>
                 <p class="profile__about">Исследователь океана</p>
             </div>
             <button class="profile__add-button" type="button">
-                <img class="profile__add-logo" src="./images/Vector-plyus.svg" alt="Плюс">
+                <img src="<%=require('./images/Vector-plyus.svg')%>" alt="Плюс" class="profile__add-logo">
             </button>
         </div>
         <div class="elements">
@@ -79,6 +78,5 @@
             </div>
         </li>
     </template>
-    <script src="./pages/index.js" type="module"></script>
 </body>
 </html>
