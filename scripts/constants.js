@@ -25,4 +25,12 @@ const initialCards = [
     }
   ];
 
-export { initialCards };
+  const defaultState = {
+    inputSelector: '.popup__name',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__no-submit',
+    inputErrorClass: 'popup__name_type_error',
+    errorClass: 'error-text_active'
+}
+
+export { initialCards, defaultState };

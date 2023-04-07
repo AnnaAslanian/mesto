@@ -1,4 +1,4 @@
-class Card {
+ export default class Card {
     constructor(link, name, templateSelector, zoomPopupImage) {
      this._link = link;
      this._name = name;
@@ -18,6 +18,7 @@ class Card {
 
      this._element.querySelector('.element__delete').addEventListener('click',  () => {
        this._element.closest('.element').remove();
+       this._element = null;
     })
 
      this._element.querySelector('.element__img').addEventListener('click', () => {
@@ -28,12 +29,10 @@ class Card {
  generateCard() {
    this._element = this._getTemplate();
    this._elementPhotoCard = this._element.querySelector('.element__img');
-   this._element.querySelector('.element__name').textContent = this._name;
    this._elementPhotoCard.src = this._link;
    this._elementPhotoCard.alt = this._name;
+   this._element.querySelector('.element__name').textContent = this._name;
    this._setEventListeners();
    return this._element;
  }
 }
-
-export { Card };
