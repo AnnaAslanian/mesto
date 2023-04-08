@@ -2,11 +2,11 @@ import  Popup  from './Popup.js';
 
 export default class PopupWithForm extends Popup {
   // Принимает в конструктор селектор popup и callback сабмита формы
-  constructor(popupSelector, callbackFormSubmit) {
-    super(popupSelector);
+  constructor(popup, callbackFormSubmit) {
+    super(popup);
     this._callbackFormSubmit = callbackFormSubmit;
     // this._popupItem находится в родительском классе
-    this._popupForm = this._popupSelector.querySelector('.popup__form');
+    this._popupForm = this._popup.querySelector('.popup__form');
     this._inputList = this._popupForm.querySelectorAll('.popup__name');
   }
   // Метод собирает данные всех полей формы

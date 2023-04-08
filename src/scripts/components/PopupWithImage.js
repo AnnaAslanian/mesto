@@ -2,10 +2,10 @@ import Popup from './Popup.js';
 
 export default class PopupWithImage extends Popup {
   // Принимает в конструктор селектор popup
-  constructor(popupSelector) {
-    super(popupSelector);
-    this._popupDescription = document.querySelector('.popup__zoom-title');
-    this._popupImage = document.querySelector('.popup__window-image');
+  constructor(popup) {
+    super(popup);
+    this._popupDescription = this._popup.querySelector('.popup__zoom-title');
+    this._popupImage = this._popup.querySelector('.popup__window-image');
   }
   // Метод перезаписывает родительский метод open
   open(description, image) {
