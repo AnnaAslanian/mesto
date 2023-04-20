@@ -79,3 +79,16 @@ buttonAddCard.addEventListener('click', () => {
     formAdd.open();
     validateAdd.toggleButtonState();
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
