@@ -1,83 +1,80 @@
-class Api {
-    constructor({ link, headers }) {
-      this._link = link;
+export default class Api {
+    constructor({ url, headers }) {
+      this._url = url;
       this._headers = headers;
     }
-    // Метод обработки ответа сервера
-    _processingServerResponse(res) {
+  
+    getInitialCards() {
+      return fetch(this._url + "/cards", {
+        method: "GET",
+        headers: this._headers,
+      }).then((res) => this._response(res));
+    }
+
+    _response(res) {
       if (res.ok) {
         return res.json();
-      } else {
-        return Promise.reject(`код ошибки: ${res.status}`);
       }
+      return Promise.reject(`Ошибка: ${res.status}`);
     }
-    // Метод инициализации карточек с сервера
-    getInitialCards() {
-      return fetch(`${this._link}cards`, {
-        headers: this._headers
-        // По умолчанию fetch — это GET, можно не указывать
-      })
-        .then(res => { return this._processingServerResponse(res); })
-    }
-    // Метод добавления новой карточки на сервер
-    addNewCard({ name, link }) {
-      return fetch(`${this._link}cards`, {
+
+    getInitialUser() {
+      return fetch(this._url + "/users/me", {
+        method: "GET",
         headers: this._headers,
-        method: 'POST',
-        body: JSON.stringify({ name, link })
-      })
-        .then(res => { return this._processingServerResponse(res); })
+      }).then((res) => this._response(res));
     }
-    // Метод удаления карточки с сервера
-    deleteCard(cardId) {
-      return fetch(`${this._link}cards/${cardId}`, {
+
+    getEditUser(data) {
+      return fetch(this._url + "/users/me", {
+        method: "PATCH",
         headers: this._headers,
-        method: 'DELETE',
-      })
-        .then(res => { return this._processingServerResponse(res); })
+        body: JSON.stringify({
+          name: data.name,
+          about: data.about,
+        }),
+      }).then((res) => this._response(res));
     }
-    // Метод получения данных пользователя с сервера
-    getUserData() {
-      return fetch(`${this._link}users/me`, {
-        headers: this._headers
-        // По умолчанию fetch — это GET, можно не указывать
-      })
-        .then(res => { return this._processingServerResponse(res); })
-    }
-    // Метод отправки данных пользователя на сервер
-    sendUserData(profileData) {
-      return fetch(`${this._link}users/me`, {
+
+    getEditAvatar(link) {
+      return fetch(this._url + "/users/me/avatar", {
+        method: "PATCH",
         headers: this._headers,
-        method: 'PATCH',
-        body: JSON.stringify({ name: profileData.username, about: profileData.description })
-      })
-        .then(res => { return this._processingServerResponse(res); })
+        body: JSON.stringify({
+          avatar: link.avatar,
+        }),
+      }).then((res) => this._response(res));
     }
-    // Метод отправки данных о новом аватаре на сервер
-    sendAvatarData(avatarLink) {
-      return fetch(`${this._link}users/me/avatar`, {
+
+    getAddCard(data) {
+      return fetch(this._url + "/cards", {
+        method: "POST",
         headers: this._headers,
-        method: 'PATCH',
-        body: JSON.stringify({ avatar: avatarLink.avatar })
-      })
-        .then(res => { return this._processingServerResponse(res); })
+        body: JSON.stringify({
+          name: data.name,
+          link: data.link,
+        }),
+      }).then((res) => this._response(res));
     }
-    // Метод отправки лайка на сервер
-    putCardLike(cardId) {
-      return fetch(`${this._link}cards/${cardId}/likes`, {
+
+    deleteCards(cardId) {
+      return fetch(this._url + "/cards/" + cardId, {
+        method: "DELETE",
         headers: this._headers,
-        method: 'PUT',
-      })
-        .then(res => { return this._processingServerResponse(res); })
+      }).then((res) => this._response(res));
     }
-    // Метод удаления лайка с сервера
-    deleteCardLike(cardId) {
-      return fetch(`${this._link}cards/${cardId}/likes`, {
+    
+    deleteLike(cardId) {
+      return fetch(this._url + "/cards/" + cardId + "/likes", {
+        method: "DELETE",
         headers: this._headers,
-        method: 'DELETE',
-      })
-        .then(res => { return this._processingServerResponse(res); })
+      }).then((res) => this._response(res));
+    }
+  
+    addLike(cardId) {
+      return fetch(this._url + "/cards/" + cardId + "/likes", {
+        method: "PUT",
+        headers: this._headers,
+      }).then((res) => this._response(res));
     }
   }
-  // Экспорт класса
-  export { Api };

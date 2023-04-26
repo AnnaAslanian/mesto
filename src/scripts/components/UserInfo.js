@@ -1,19 +1,20 @@
 export default class UserInfo {
-    // Принимает объект с селекторами двух элементов: элемента имени пользователя и элемента информации о себе
-    constructor({ userName, userJob }) {
-      this._name = userName;
-      this._job = userJob;
-    }
-    // Метод возвращает объект с данными пользователя
-    getUserInfo() {
-      return {
-        name: this._name.textContent,
-        job: this._job.textContent
-      };
-    }
-    // Метод принимает новые данные пользователя и добавляет их на страницу
-    setUserInfo( name, job ) {
-      this._name.textContent = name;
-      this._job.textContent = job;
-    }
+  constructor({ nameUser, jobUser, avatar }) {
+    this._nameUser = nameUser;
+    this._jobUser = jobUser;
+    this._avatar = avatar;
   }
+
+  getUserInfo() {
+    return {
+      name: this._nameUser.textContent,
+      about: this._jobUser.textContent,
+    };
+  }
+  
+  setUserInfo({ name, about, avatar }) {
+    this._nameUser.textContent = name;
+    this._jobUser.textContent = about;
+    this._avatar.src = avatar;
+  }
+}
