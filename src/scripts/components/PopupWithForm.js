@@ -6,7 +6,11 @@ export default class PopupWithForm extends Popup {
     this._callbackForm = callbackForm; 
     this._form = this._popup.querySelector(".popup__form"); 
     this._inputList = this._form.querySelectorAll(".popup__name"); 
-  } 
+    this._buttonSave = this._popup.querySelector(".popup__submit-button");
+  }
+  open() {
+    super.open()
+  }
  
   _getInputValues() { 
     this._formValues = {}; 
@@ -29,7 +33,11 @@ export default class PopupWithForm extends Popup {
       this._callbackForm(this._getInputValues()); 
     }); 
   } 
-   
+
+  renderLoading(buttonText='Сохранить') { 
+    this._buttonSave.textContent = buttonText; 
+ }
+  
   close() { 
     super.close(); 
     this._form.reset(); 

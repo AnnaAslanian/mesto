@@ -9,8 +9,6 @@ import Api from "../scripts/components/Api.js"
 import PopupDelete from "../scripts/components/PopupDelete.js"
 import renderLoading from "../utils/utils.js";
 
-
-
 import {
     initialCards,
     validationConfig,
@@ -62,13 +60,7 @@ const api = new Api({
       .then(() => formPopupEdit.close()) 
       .catch((err) => console.log(`Ошибка ${err}`)) 
       .finally(() => { 
-        renderLoading(false, popupEdit); 
-        api 
-           .getEditUser(input) 
-           .then((res) => {  
-             userInfo.setUserInfo(res); 
-        
-      }); 
+        renderLoading(false, popupEdit);  
     }); 
   };
   
@@ -88,9 +80,6 @@ const api = new Api({
       });
   };
 
-  // const section = new Section({ items:initialCards, renderer:renderCard }, elementsList ) 
-  // section.renderedItems();
-  
   const sectionAdd = new Section(
     {
       renderer: (data) => {
@@ -101,14 +90,14 @@ const api = new Api({
   );
   
   Promise.all([api.getInitialUser(), api.getInitialCards()])
-    .then(([infoUser, cards]) => {
-      userInfo.setUserInfo(infoUser);
-      userId = infoUser._id;
-      cards.reverse().map((item) => sectionAdd.addItem(createCard(item, userId)));
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    });
+  .then(([infoUser, cards]) => {
+    userInfo.setUserInfo(infoUser);
+    userId = infoUser._id;
+    cards.reverse().map((item) => sectionAdd.addItem(createCard(item, userId)));
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
   
   const openZoomImage = (link, name) => popupImage.open(link, name);
   
@@ -171,6 +160,7 @@ const api = new Api({
   
   buttonCard.addEventListener("click", () => {
     popupAdd.open();
+    renderLoading(true, popupCard);
     validateAdd.toggleButtonState();
   });
   
