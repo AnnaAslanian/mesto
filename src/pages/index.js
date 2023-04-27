@@ -11,7 +11,9 @@ import renderLoading from "../utils/utils.js";
 
 
 
-import {validationConfig,
+import {
+    initialCards,
+    validationConfig,
     buttonProfile,
     popupEdit,
     profileJob,
@@ -50,18 +52,24 @@ const api = new Api({
   });
   const userInfo = new UserInfo({ nameUser: profileName, jobUser: profileJob, avatar: avatarProfile });
   
-  const handleFormEditProfile = (input) => {
-    buttonLoading.textContent = "Сохранение...";
-    api
-      .getEditUser(input)
-      .then((res) => {
-        userInfo.setUserInfo(res);
-      })
-      .then(() => formPopupEdit.close())
-      .catch((err) => console.log(`Ошибка ${err}`))
-      .finally(() => {
-        renderLoading(false, popupEdit);
-      });
+  const handleFormEditProfile = (input) => { 
+    buttonLoading.textContent = "Сохранение..."; 
+    api 
+      .getEditUser(input) 
+      .then((res) => { 
+        userInfo.setUserInfo(res); 
+      }) 
+      .then(() => formPopupEdit.close()) 
+      .catch((err) => console.log(`Ошибка ${err}`)) 
+      .finally(() => { 
+        renderLoading(false, popupEdit); 
+        api 
+           .getEditUser(input) 
+           .then((res) => {  
+             userInfo.setUserInfo(res); 
+        
+      }); 
+    }); 
   };
   
   const formPopupEdit = new PopupWithForm(popupEdit, handleFormEditProfile);
@@ -79,6 +87,9 @@ const api = new Api({
         renderLoading(false, popupAvatar);
       });
   };
+
+  // const section = new Section({ items:initialCards, renderer:renderCard }, elementsList ) 
+  // section.renderedItems();
   
   const sectionAdd = new Section(
     {
@@ -135,7 +146,7 @@ const api = new Api({
         renderLoading(false, popupCard);
       });
   }
-  
+
   function like(card, likeId) {
     api
       .addLike(likeId)
@@ -160,7 +171,6 @@ const api = new Api({
   
   buttonCard.addEventListener("click", () => {
     popupAdd.open();
-    renderLoading(true, popupCard);
     validateAdd.toggleButtonState();
   });
   
