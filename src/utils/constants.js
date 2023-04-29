@@ -52,9 +52,7 @@ export {
   popupAvatar,
   buttonAvatar,
   formAvatar,
-  popupDeleteCard,
-  buttonLoadingCard,
-  buttonLoading};
+  popupDeleteCard};
 
 
 const buttonProfile = document.querySelector(".profile__edit-button");
@@ -73,5 +71,3 @@ const popupAvatar = document.querySelector(".edit-avatar");
 const buttonAvatar = document.querySelector(".profile__avatar-edit");
 const formAvatar = document.querySelector(".popup__form-avatar");
 const popupDeleteCard = document.querySelector(".popup_delete-card");
-const buttonLoading = document.querySelector(".popup__edit-save");
-const buttonLoadingCard = document.querySelector(".popup__add-save");

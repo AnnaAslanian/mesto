@@ -7,7 +7,6 @@ import PopupWithImage  from '../scripts/components/PopupWithImage.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from "../scripts/components/Api.js"
 import PopupDelete from "../scripts/components/PopupDelete.js"
-import renderLoading from "../utils/utils.js";
 
 import {
     initialCards,
@@ -18,7 +17,7 @@ import {
     profileName,
     avatarProfile, 
     template, 
-    cardsContainer, 
+    cardsContainer,
     popupCard, 
     buttonCard, 
     popupWindow, 
@@ -27,9 +26,7 @@ import {
     popupAvatar,
     buttonAvatar,
     formAvatar,
-    popupDeleteCard,
-    buttonLoadingCard,
-    buttonLoading} from "../utils/constants.js"
+    popupDeleteCard} from "../utils/constants.js"
 
 
     const validateEdit = new FormValidator(validationConfig, formEdit);
@@ -50,24 +47,22 @@ const api = new Api({
   });
   const userInfo = new UserInfo({ nameUser: profileName, jobUser: profileJob, avatar: avatarProfile });
   
-  const handleFormEditProfile = (input) => { 
-    buttonLoading.textContent = "Сохранение..."; 
-    api 
-      .getEditUser(input) 
-      .then((res) => { 
-        userInfo.setUserInfo(res); 
-      }) 
-      .then(() => formPopupEdit.close()) 
-      .catch((err) => console.log(`Ошибка ${err}`)) 
-      .finally(() => { 
-        renderLoading(false, popupEdit);  
-    }); 
-  };
-  
+  function handleFormEditProfile(input) {
+    formPopupEdit.renderLoading('Сохранение...')
+    api.getEditUser(input)
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        formPopupEdit.close();
+      })
+      .catch((err) => console.log(`Ошибка ${err}`))
+      .finally(() => formPopupEdit.renderLoading()
+  )};
+
   const formPopupEdit = new PopupWithForm(popupEdit, handleFormEditProfile);
   formPopupEdit.setEventListeners();
   
-  const handleFormEditAvatar = (link) => {
+  function handleFormEditAvatar(link) {
+    formPopupAvatar.renderLoading('Сохранение...')
     api
       .getEditAvatar(link)
       .then((res) => {
@@ -76,10 +71,10 @@ const api = new Api({
       .then(() => formPopupAvatar.close())
       .catch((err) => console.log(`Ошибка ${err}`))
       .finally(() => {
-        renderLoading(false, popupAvatar);
+        formPopupAvatar.renderLoading();
       });
   };
-
+ 
   const sectionAdd = new Section(
     {
       renderer: (data) => {
@@ -123,7 +118,7 @@ const api = new Api({
   }
 
   function handleFormSubmitAddCard(data) {
-    buttonLoadingCard.textContent = "Сохранение...";
+    popupAdd.renderLoading('Сохранение...')
     api
       .getAddCard(data)
       .then((res) => {
@@ -132,7 +127,7 @@ const api = new Api({
       .then(() => popupAdd.close())
       .catch((err) => console.log(`Ошибка ${err}`))
       .finally(() => {
-        renderLoading(false, popupCard);
+        popupAdd.renderLoading();
       });
   }
 
@@ -160,19 +155,16 @@ const api = new Api({
   
   buttonCard.addEventListener("click", () => {
     popupAdd.open();
-    renderLoading(true, popupCard);
     validateAdd.toggleButtonState();
   });
   
   buttonProfile.addEventListener("click", () => {
     formPopupEdit.open();
-    renderLoading(true, popupEdit);
     formPopupEdit.setInputValues(userInfo.getUserInfo());
   });
   
   buttonAvatar.addEventListener("click", () => {
     formPopupAvatar.open();
-    renderLoading(true, popupAvatar);
     validateAvatar.toggleButtonState();
   });
   
